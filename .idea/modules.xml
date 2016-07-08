@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CodeComputer.iml" filepath="$PROJECT_DIR$/.idea/modules/CodeComputer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CodeComputer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/CodeComputer_main.iml" group="CodeComputer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CodeComputer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/CodeComputer_test.iml" group="CodeComputer" />
+    </modules>
+  </component>
+</project>
