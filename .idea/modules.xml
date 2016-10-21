@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CodeComputer.iml" filepath="$PROJECT_DIR$/.idea/modules/CodeComputer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CodeComputer_demo.iml" filepath="$PROJECT_DIR$/.idea/modules/CodeComputer_demo.iml" group="CodeComputer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CodeComputer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/CodeComputer_main.iml" group="CodeComputer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CodeComputer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/CodeComputer_test.iml" group="CodeComputer" />
     </modules>
