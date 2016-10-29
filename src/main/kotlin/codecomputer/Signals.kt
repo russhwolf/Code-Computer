@@ -58,7 +58,7 @@ interface Writable {
  */
 class Relay(private var state: Boolean = false) : Signal {
     companion object {
-        private val queue: Queue<(Boolean) -> Unit> = LinkedList<(Boolean) -> Unit>()
+        private val queue: Queue<(Boolean) -> Unit> = ArrayDeque()
         private var logCounter: Int = -1
         var logger: (String) -> Unit = ::println
 
