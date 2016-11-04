@@ -8,7 +8,7 @@ fun List<Readable>.readAndAssert(value: Int, label: String? = null) {
     assertEquals(value, read(), label)
 }
 
-fun unaryTestHelper(operator: (Readable) -> Readable, expF: Boolean, expT: Boolean, label: String) {
+inline fun unaryTestHelper(operator: (Readable) -> Readable, expF: Boolean, expT: Boolean, label: String) {
     val input = Relay()
     val output = operator(input)
     input.write(false)
@@ -17,9 +17,9 @@ fun unaryTestHelper(operator: (Readable) -> Readable, expF: Boolean, expT: Boole
     output.readAndAssert(expT, "$label T")
 }
 
-fun binaryTestHelper(operator: (Readable, Readable) -> Readable,
-                     expFF: Boolean, expFT: Boolean, expTF: Boolean, expTT: Boolean,
-                     label: String) {
+inline fun binaryTestHelper(operator: (Readable, Readable) -> Readable,
+                            expFF: Boolean, expFT: Boolean, expTF: Boolean, expTT: Boolean,
+                            label: String) {
     val input1 = Relay()
     val input2 = Relay()
     val output = operator(input1, input2)
@@ -37,10 +37,10 @@ fun binaryTestHelper(operator: (Readable, Readable) -> Readable,
     output.readAndAssert(expTT, "$label TT")
 }
 
-fun ternaryTestHelper(operator: (Readable, Readable, Readable) -> Readable,
-                      expFFF: Boolean, expFFT: Boolean, expFTF: Boolean, expFTT: Boolean,
-                      expTFF: Boolean, expTFT: Boolean, expTTF: Boolean, expTTT: Boolean,
-                      label: String) {
+inline fun ternaryTestHelper(operator: (Readable, Readable, Readable) -> Readable,
+                             expFFF: Boolean, expFFT: Boolean, expFTF: Boolean, expFTT: Boolean,
+                             expTFF: Boolean, expTFT: Boolean, expTTF: Boolean, expTTT: Boolean,
+                             label: String) {
     val input1 = Relay()
     val input2 = Relay()
     val input3 = Relay()

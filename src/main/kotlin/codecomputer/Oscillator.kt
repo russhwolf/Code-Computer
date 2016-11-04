@@ -16,7 +16,7 @@ class Oscillator private constructor(private val delegate: Signal) : Readable by
     /**
      * Run this [Oscillator] until the given condition is `true`
      */
-    fun runUntil(condition: () -> Boolean) {
+    inline fun runUntil(crossinline condition: () -> Boolean) {
         val subscriber: (Boolean) -> Unit = {
             if (condition()) {
                 stop()
@@ -43,7 +43,7 @@ class Oscillator private constructor(private val delegate: Signal) : Readable by
         }
     }
 
-    private fun start(): Unit {
+    protected fun start(): Unit {
         if (active) return
         active = true
         while (active) {
@@ -51,7 +51,7 @@ class Oscillator private constructor(private val delegate: Signal) : Readable by
         }
     }
 
-    private fun stop(): Unit {
+    protected fun stop(): Unit {
         active = false
     }
 }

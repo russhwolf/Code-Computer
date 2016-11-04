@@ -146,7 +146,7 @@ fun List<Readable>.read(): Int = toBits().toInt()
 
 fun List<Readable>.read(index: Int): Boolean = this[index].read()
 
-fun List<Readable>.subscribe(subscriber: (Int, Boolean) -> Unit)
+inline fun List<Readable>.subscribe(crossinline subscriber: (Int, Boolean) -> Unit)
         = forEachIndexed { i, readable -> readable.subscribe { subscriber(i, it) } }
 
 fun List<Readable>.log(tag: String?) = forEachIndexed { i, readable -> readable.log(tag?.let { "$it[$i]" }, this) }
@@ -157,5 +157,7 @@ fun List<Writable>.write(values: List<Boolean>) = values.forEachIndexed { i, val
 
 fun List<Writable>.write(value: Int) = write(value.toBits(size))
 
-fun List<Writable>.link(readables: List<Readable>, transform: (Int, Boolean) -> Boolean = { i, b -> b })
+inline fun List<Writable>.link(readables: List<Readable>, crossinline transform: (Int, Boolean) -> Boolean)
         = forEachIndexed { i, writable -> writable.link(readables[i]) { transform.invoke(i, it) } }
+
+fun List<Writable>.link(readables: List<Readable>) = link(readables, { i, b -> b })

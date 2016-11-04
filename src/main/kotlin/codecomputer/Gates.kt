@@ -17,13 +17,15 @@ operator fun Readable.not(): Readable = Not(this)
  * @see Or
  */
 open class CombinedSignal(a: Readable, b: Readable, combine: (Boolean, Boolean) -> Boolean) :
-        Readable by when {
-            a is Constant && b is Constant -> combine(a.read(), b.read()).toReadable()
-            else -> Relay().apply {
-                link(a) { combine(it, b.read()) }
-                link(b) { combine(a.read(), it) }
-            }
-        }
+        Readable by combinedSignalDelegate(a, b, combine)
+
+private inline fun combinedSignalDelegate(a: Readable, b: Readable, crossinline combine: (Boolean, Boolean) -> Boolean): Readable = when {
+    a is Constant && b is Constant -> combine(a.read(), b.read()).toReadable()
+    else -> Relay().apply {
+        link(a) { combine(it, b.read()) }
+        link(b) { combine(a.read(), it) }
+    }
+}
 
 /**
  * This class contains the shared implementation details of the [MultiAnd] and [MultiOr] classes, acting as the multiple-input
@@ -34,7 +36,10 @@ open class CombinedSignal(a: Readable, b: Readable, combine: (Boolean, Boolean) 
  * @see MultiOr
  */
 open class MultiCombinedSignal(input: List<Readable>, combine: (Readable, Readable) -> Readable) :
-        Readable by (input.reduce { a, b -> combine(a, b) })
+        Readable by multiCombinedSignalDelegate(input, combine)
+
+private inline fun multiCombinedSignalDelegate(input: List<Readable>, combine: (Readable, Readable) -> Readable)
+        = (input.reduce { a, b -> combine(a, b) })
 
 /**
  * An `And` gate [read][Readable]s as `true` if and only if both input signals are `true`.
