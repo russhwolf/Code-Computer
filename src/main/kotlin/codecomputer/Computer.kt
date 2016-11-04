@@ -103,14 +103,13 @@ class Computer {
         val dataLatch: List<Readable> = MultiEdgeLatch(dataLatchClock, dataSelector, reset)
         data.link(dataLatch)
 
-        val jumpCarryLatch = EdgeLatch(dataLatchClock, adder.carry, reset)
-        val jumpZeroLatch = EdgeLatch(dataLatchClock, MultiNor(adder), reset)
+        val zeroLatch = EdgeLatch(dataLatchClock, MultiNor(adder), reset)
         set.link(MultiOr(
                 jump,
-                jumpIfZero and jumpZeroLatch,
-                jumpIfCarry and jumpCarryLatch,
-                jumpIfNotZero and jumpZeroLatch.bar,
-                jumpIfNotCarry and jumpCarryLatch.bar
+                jumpIfZero and zeroLatch,
+                jumpIfCarry and carryLatch,
+                jumpIfNotZero and zeroLatch.bar,
+                jumpIfNotCarry and carryLatch.bar
         ) and dataClock)
     }
 
