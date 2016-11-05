@@ -61,9 +61,9 @@ class ProgrammableAdderTest {
         with(programmableAdder) {
             writeRam(0x0,
                     LOD, 0x56,
-                    STO, 0x10,
+                    STO, 0x00,
                     LOD, 0xf0,
-                    STO, 0x15,
+                    STO, 0x00,
                     HLT)
 
             run()

@@ -10,8 +10,7 @@ package codecomputer
  * @see AddressCounter
  */
 class FrequencyDivider(clock: Readable, clear: Readable = Constant.FALSE, preset: Readable = Constant.FALSE,
-                       state: Boolean = true) :
-        RelayBar(state) {
+                       state: Boolean = true) : RelayBar(state) {
     override val bar: Readable
 
     init {
@@ -31,7 +30,7 @@ class FrequencyDivider(clock: Readable, clear: Readable = Constant.FALSE, preset
  *
  * @see FrequencyDivider
  */
-class RippleCounter(size: Int, clock: Readable, clear: Readable = Constant.FALSE, state: Int = -1) :
+class RippleCounter(size: Int, clock: Readable, clear: Readable = Constant.FALSE, state: Int = 0) :
         List<Readable> by ((0 until size).fold(mutableListOf<Invertible>()) { list, i ->
             list.apply { add(FrequencyDivider(if (i == 0) !clock else list[i - 1].bar, clear, state = state.nthBit(i))) }
         })
@@ -45,7 +44,7 @@ class RippleCounter(size: Int, clock: Readable, clear: Readable = Constant.FALSE
  * @see FrequencyDivider
  */
 class AddressCounter(clock: Readable, address: List<Readable>, set: Readable = Constant.FALSE,
-                     reset: Readable = Constant.FALSE, state: Int = -1) :
+                     reset: Readable = Constant.FALSE, state: Int = 0) :
         List<Invertible> by ((0..address.lastIndex).fold(mutableListOf<Invertible>()) { list, i ->
             list.apply {
                 add(FrequencyDivider(

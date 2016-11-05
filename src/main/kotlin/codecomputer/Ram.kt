@@ -11,7 +11,7 @@ package codecomputer
  */
 class Ram(address: List<Readable>, data: Readable, write: Readable) :
         Readable by (MultiDecoder(address, write)
-                .map { EdgeLatch(it, data) }
+                .map { LevelLatch(it, data) }
                 .let { MultiSelector(address, it) })
 
 /**

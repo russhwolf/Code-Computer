@@ -6,7 +6,7 @@ import kotlin.test.assertFalse
 
 class CounterTest {
 
-    @Test fun rippleUnitTest() {
+    @Test fun frequencyDividerTest() {
         val clock = Relay()
         val clear = Relay()
         val preset = Relay()
