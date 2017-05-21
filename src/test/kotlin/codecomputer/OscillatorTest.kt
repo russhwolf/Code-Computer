@@ -18,7 +18,7 @@ class OscillatorTest {
     @Test fun oscillatorTest() {
         oscillator.run(CYCLES) {
             counter = it
-            oscillator.readAndAssert(if (it % 2 == 0) false else true, "oscillator event $it")
+            oscillator.readAndAssert(it % 2 != 0, "oscillator event $it")
         }
 
         assertEquals(CYCLES - 1, counter, "oscillator event count")
@@ -27,7 +27,7 @@ class OscillatorTest {
     @Test fun oscillatorTestRun1() {
         for (i in 0 until CYCLES) {
             oscillator.run(1) {
-                oscillator.readAndAssert(if (i % 2 == 0) false else true, "oscillator event $i")
+                oscillator.readAndAssert(i % 2 != 0, "oscillator event $i")
                 counter = i
             }
         }

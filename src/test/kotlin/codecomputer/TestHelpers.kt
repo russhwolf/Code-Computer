@@ -4,9 +4,7 @@ import kotlin.test.assertEquals
 
 fun Readable.readAndAssert(value: Boolean, label: String? = null) = assertEquals(value, read(), label)
 
-fun List<Readable>.readAndAssert(value: Int, label: String? = null) {
-    assertEquals(value, read(), label)
-}
+fun List<Readable>.readAndAssert(value: Int, label: String? = null) = assertEquals(value, read(), label)
 
 inline fun unaryTestHelper(operator: (Readable) -> Readable, expF: Boolean, expT: Boolean, label: String) {
     val input = Relay()

@@ -131,7 +131,7 @@ class SignalTest {
         signals.write(2)
 
         for (i in RANGE) {
-            assertEquals(if (i == 1) true else false, signals[i].read(), "write int $i")
+            assertEquals(i == 1, signals[i].read(), "write int $i")
         }
     }
 

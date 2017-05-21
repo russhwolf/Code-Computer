@@ -43,7 +43,7 @@ class Oscillator private constructor(private val delegate: Signal) : Readable by
         }
     }
 
-    protected fun start(): Unit {
+    fun start(): Unit {
         if (active) return
         active = true
         while (active) {
@@ -51,7 +51,7 @@ class Oscillator private constructor(private val delegate: Signal) : Readable by
         }
     }
 
-    protected fun stop(): Unit {
+    fun stop(): Unit {
         active = false
     }
 }

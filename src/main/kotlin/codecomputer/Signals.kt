@@ -116,7 +116,7 @@ class Relay(private var state: Boolean = false) : Signal {
  * The `Constant` class implements [Readable] but not [Writable]. This makes it useful as a default input parameter to
  * avoid instantiating more [Relay] objects than necessary.
  */
-enum class Constant() : Readable {
+enum class Constant : Readable {
     FALSE, TRUE;
 
     override fun read() = this == TRUE
